@@ -1,0 +1,64 @@
+<h1>Unicorn Popcorn Word Challenge</h1>
+
+<div class="unicorn">
+  <!--- <img src="../../assets/unicorn.jpg"> --->
+  <div *ngIf="numClicksRemaining == 6">
+    <img src="../../assets/six.jpg">
+  </div>
+  <div *ngIf="numClicksRemaining == 5">
+    <img src="../../assets/five.jpg">
+  </div>
+  <div *ngIf="numClicksRemaining == 4">
+    <img src="../../assets/four.jpg">
+  </div>
+  <div *ngIf="numClicksRemaining == 3">
+    <img src="../../assets/three.jpg">
+  </div>
+  <div *ngIf="numClicksRemaining == 2">
+    <img src="../../assets/two.jpg">
+  </div>
+  <div *ngIf="numClicksRemaining == 1">
+    <img src="../../assets/one.jpg">
+  </div>
+</div>
+
+<br>
+
+<div class="word">
+  <table>
+    <tr>
+      <!---  <td *ngFor="let _word of mysteryWordLetters">{{_word}}</td> -->
+
+      <td *ngFor="let _word of mysteryWordLetters">
+        {{_word}}
+      </td>
+    </tr>
+  </table>
+</div>
+
+<br>
+
+<table class="alphabet">
+  <!---
+  <tr>
+    <td *ngFor="let _letter of letterList" (click)="logClick(_letter.letter)" [class.guessed]="_letter.isGuessed == true">{{_letter.letter}}</td>
+  </tr>
+  -->
+
+  <tr>
+    <ng-container *ngFor="let _letter of letterList">
+      <td *ngIf="_letter.letter <= 'M'" (click)="logClick(_letter.letter)" [class.guessed]="_letter.isGuessed == true">
+        {{_letter.letter}}
+      </td>
+    </ng-container>
+  </tr>
+  <tr>
+    <ng-container *ngFor="let _letter of letterList">
+      <td *ngIf="_letter.letter >= 'N'" (click)="logClick(_letter.letter)" [class.guessed]="_letter.isGuessed == true">
+        {{_letter.letter}}
+      </td>
+    </ng-container>
+  </tr>
+</table>
+
+<button (click)="newWord()">Clear</button>
